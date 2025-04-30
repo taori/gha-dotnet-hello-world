@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>$(TestProjectTargetFramework)</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\DotnetGithubActionHelloWorld\DotnetGithubActionHelloWorld.csproj"/>
+		<ProjectReference Include="..\DotnetGithubActionHelloWorld.Tests.Shared\DotnetGithubActionHelloWorld.Tests.Shared.csproj"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1"/>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1"/>
+	</ItemGroup>
+
+</Project>

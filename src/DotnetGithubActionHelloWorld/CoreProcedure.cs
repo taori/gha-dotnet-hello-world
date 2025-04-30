@@ -1,0 +1,40 @@
+﻿// This file is licensed to you under the MIT license.
+
+using DotnetGithubActionHelloWorld.Extensions;
+
+namespace DotnetGithubActionHelloWorld;
+
+internal class CoreProcedure
+{
+	public static Task ExecuteAsync(IHost host, ActionInputs inputs, CancellationToken cancellationToken)
+	{
+		Matcher matcher = new();
+		matcher.AddIncludePatterns(new[] { "**/*.csproj", "**/*.vbproj" });
+		var logger = host.GetService<ILogger<CoreProcedure>>();
+		
+		logger.LogInformation($"""
+		                      Received arguments:
+		                      Workspace directory {inputs.WorkspaceDirectory}
+		                      """);
+		
+		
+
+		// https://docs.github.com/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter
+		// ::set-output deprecated as mentioned in https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+		var githubOutputFile = Environment.GetEnvironmentVariable("GITHUB_OUTPUT", EnvironmentVariableTarget.Process);
+		if (!string.IsNullOrWhiteSpace(githubOutputFile))
+		{
+			using (var textWriter = new StreamWriter(githubOutputFile!, true, Encoding.UTF8))
+			{
+				textWriter.WriteLine($"message=Hello from Github Action {DateTime.Now:F}");
+			}
+		}
+		else
+		{
+			Console.WriteLine($"::set-output name=message::Hello from Github Action {DateTime.Now:F}");
+		}
+
+		Environment.Exit(0);
+		return Task.CompletedTask;
+	}
+}

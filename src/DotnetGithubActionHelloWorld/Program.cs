@@ -1,0 +1,46 @@
+﻿using DotnetGithubActionHelloWorld.Extensions;
+
+namespace DotnetGithubActionHelloWorld;
+
+class Program
+{
+	static async Task ExecuteGithubActionAsync(ActionInputs inputs, IHost host)
+	{
+		using CancellationTokenSource tokenSource = new();
+
+		Console.CancelKeyPress += delegate
+		{
+			tokenSource.Cancel();
+		};
+		
+		await CoreProcedure.ExecuteAsync(host, inputs, tokenSource.Token);
+	}
+
+
+	internal static async Task Main(string[] args)
+	{
+		using var host = Host.CreateDefaultBuilder(args)
+			.ConfigureServices((_, services) =>
+			{
+			})
+			.Build();
+
+		var parser = Default
+			.ParseArguments(() => new ActionInputs(), args)
+			.WithNotParsed(err => HandleNotParsed(err, host));
+
+		await parser.WithParsedAsync(options => ExecuteGithubActionAsync(options, host));
+		await host.RunAsync();
+	}
+
+	private static void HandleNotParsed(IEnumerable<Error> errors, IHost host)
+	{
+		host.GetService<ILoggerFactory>()
+			.CreateLogger("DotnetGithubActionHelloWorld")
+			.LogError(
+				string.Join(Environment.NewLine, errors.Select(error => error.ToString()))
+			);
+
+		Environment.Exit(2);
+	}
+}

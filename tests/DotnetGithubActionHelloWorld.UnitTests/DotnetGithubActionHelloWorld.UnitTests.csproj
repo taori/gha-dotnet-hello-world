@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>$(TestProjectTargetFramework)</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\DotnetGithubActionHelloWorld\DotnetGithubActionHelloWorld.csproj"/>
+		<ProjectReference Include="..\DotnetGithubActionHelloWorld.Tests.Shared\DotnetGithubActionHelloWorld.Tests.Shared.csproj"/>
+	</ItemGroup>
+</Project>
