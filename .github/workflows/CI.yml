@@ -119,7 +119,7 @@ jobs:
       debugWorkflow: false
 
   deploy:
-    needs: [ parameters, build ]
+    needs: [ parameters, coverage ]
     uses: taori/actions/.github/workflows/github-dotnet-action-deploy.yml@v11
     with:      
       push: ${{ needs.parameters.outputs.publish == 'true' }}
