@@ -1,5 +1,7 @@
 using DotnetGithubActionHelloWorld.Tests.Shared;
 
+using Microsoft.Extensions.Logging.Abstractions;
+
 using Shouldly;
 
 using Xunit;
@@ -14,7 +16,11 @@ public class UnitTest1
     public async Task Test1()
     {
 	    var w = Path.GetTempPath();
-	    await Task.Run(async () => await Program.Main(["-w", w]));
+	    await CoreProcedure.ExecuteAsync(NullLogger<CoreProcedure>.Instance, new ActionInputs()
+	    {
+		    WorkspaceDirectory = w,
+	    }, TestContext.Current.CancellationToken);
+	    
     }
 
     public UnitTest1(ITestOutputHelper outputHelper)

@@ -6,11 +6,10 @@ namespace DotnetGithubActionHelloWorld;
 
 internal class CoreProcedure
 {
-	public static Task ExecuteAsync(IHost host, ActionInputs inputs, CancellationToken cancellationToken)
+	public static Task ExecuteAsync(ILogger<CoreProcedure> logger, ActionInputs inputs, CancellationToken cancellationToken)
 	{
 		Matcher matcher = new();
 		matcher.AddIncludePatterns(new[] { "**/*.csproj", "**/*.vbproj" });
-		var logger = host.GetService<ILogger<CoreProcedure>>();
 		
 		logger.LogInformation($"""
 		                      Received arguments:

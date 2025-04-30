@@ -13,7 +13,7 @@ class Program
 			tokenSource.Cancel();
 		};
 		
-		await CoreProcedure.ExecuteAsync(host, inputs, tokenSource.Token);
+		await CoreProcedure.ExecuteAsync(host.GetService<ILogger<CoreProcedure>>(), inputs, tokenSource.Token);
 	}
 
 
