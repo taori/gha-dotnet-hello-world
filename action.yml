@@ -1,12 +1,12 @@
-name: 'TODO actionname'
+name: 'gha-dotnet-hello-world'
 author: 'taori@users.noreply.github.com'
 description: 'TODO Description'
 branding:
   icon: book-open
   color: purple
 inputs:
-  filename:
-    description: 'A comma separated list of code coverage files to analyse. Also supports using glob patterns to match multiple files.'
+  workspace:
+    description: 'path of workspace'
     required: true
 runs:
   using: 'docker'
@@ -14,5 +14,5 @@ runs:
   image: 'Dockerfile'
   #image: 'docker://ghcr.io/taori/gha-dotnet-hello-world:v1.0.0'
   args:
-    - '--files'
+    - '-w'
     - ${{ inputs.filename }}

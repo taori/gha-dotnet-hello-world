@@ -9,6 +9,8 @@ permissions:
     write
   id-token:
     write
+  packages: 
+    write
     
 on:
   push:
