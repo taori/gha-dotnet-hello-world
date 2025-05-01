@@ -71,14 +71,13 @@ jobs:
     needs: [deploy]
     runs-on: ubuntu-latest
     steps:
-      - name: gha-dotnet-hello-world
+      - name: call github action
         id: hw
-        uses: taori/gha-dotnet-hello-world@latest
+        uses: taori/gha-dotnet-hello-world@v0.1.12
         with: 
           workspace: ${{ github.workspace }}
 
-      - name: Setting up parameters
-        id: parameters
+      - name: output action result
         shell: pwsh
         run: |
           Write-Host "Previous result is ${{ steps.hw.outputs.message }}"

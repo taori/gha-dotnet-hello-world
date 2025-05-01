@@ -2,10 +2,11 @@
 
 ## Project state
 
-[![.GitHub](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/CI.yml/badge.svg)](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/CI.yml)
 [![GitHub issues](https://img.shields.io/github/issues/taori/gha-dotnet-hello-world)](https://github.com/taori/gha-dotnet-hello-world/issues)
+[![.GitHub](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/CI.yml/badge.svg)](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/CI.yml)
+[![Create release](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/Create%20release.yml/badge.svg?event=workflow_dispatch)](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/Create%20release.yml)
 
-<!--CoverageStart-->~~~~
+<!--CoverageStart-->
 ![Code Coverage](https://img.shields.io/badge/Code%20Coverage-40%25-success?style=flat)
 
 Package | Line Rate | Branch Rate | Health
