@@ -25,7 +25,7 @@ jobs:
         with:
           regex: "image:\\s?'([^']+)'"
           replacement: 'docker://ghcr.io/taori/gha-dotnet-hello-world:${{inputs.version}}'
-          path: 'action.yml'      
+          include: 'action.yml$'  
 
       - name: Commit action.yml
         uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 #v9.1.4
