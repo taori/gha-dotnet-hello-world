@@ -65,8 +65,8 @@ jobs:
       imageName: 'gha-dotnet-hello-world'
       push: true
       imageTags: |
-        gha-dotnet-hello-world:latest
-        gha-dotnet-hello-world:${{ inputs.version }}
+        latest
+        ${{ inputs.version }}
 
   verify:
     needs: [deploy]
