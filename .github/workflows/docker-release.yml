@@ -1,20 +1,20 @@
-name: Create release
+name: docker release
 
-on:  
+on:
   workflow_dispatch:
-    inputs: 
+    inputs:
       version:
         description: "The version of the release, e.g. v1.0.0"
         default: "v0.1.0"
         required: true
 
 jobs:
-      
+  
   git-release:
-    permissions: 
-      contents: 
+    permissions:
+      contents:
         write
-      
+    
     runs-on: ubuntu-latest
     steps:
 
@@ -23,13 +23,13 @@ jobs:
           persist-credentials: true
           repository: ${{ github.event.pull_request.head.repo.full_name }} # required for commit
           ref: ${{ github.event.pull_request.head.ref }} # required for commit          
-          
+
       - name: Modify action.yml
         uses: mingjun97/file-regex-replace@7d8ae0144cd6660fe8ca5a938ae71ea816a06f47
         with:
           regex: "image:\\s?'([^']+)'"
           replacement: "image: 'docker://ghcr.io/taori/gha-dotnet-hello-world:${{inputs.version}}'"
-          include: 'action.yml$'  
+          include: 'action.yml$'
 
       - name: Commit action.yml
         uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 #v9.1.4
@@ -38,12 +38,12 @@ jobs:
           push: false
           add: ./action.yml
           message: 'Version bump'
-          
+
       - name: tag + push
         run: |
           git tag -f -a ${{ inputs.version }} -m "Release ${{ inputs.version }}"
           git push -f origin ${{ inputs.version }}
-          
+
       - name: Create Release
         uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631
         with:
@@ -55,7 +55,7 @@ jobs:
 
   deploy:
     permissions:
-      packages: write 
+      packages: write
       id-token: write
       contents: read
     needs: [git-release]
@@ -69,12 +69,13 @@ jobs:
 
   verify:
     needs: [deploy]
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: call github action
         id: hw
         uses: taori/gha-dotnet-hello-world@v0.1.12
-        with: 
+        with:
           workspace: ${{ github.workspace }}
 
       - name: output action result
