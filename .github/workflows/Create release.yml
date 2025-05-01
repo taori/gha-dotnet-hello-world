@@ -73,7 +73,7 @@ jobs:
     steps:
       - name: gha-dotnet-hello-world
         id: hw
-        uses: taori/gha-dotnet-hello-world@v0.1.2
+        uses: taori/gha-dotnet-hello-world@v0.1.9
         with: 
           workspace: ${{ github.workspace }}
 
