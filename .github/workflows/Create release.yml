@@ -62,9 +62,12 @@ jobs:
     uses: taori/actions/.github/workflows/github-dotnet-action-deploy.yml@v11
     with:
       checkoutRef: "refs/tags/${{ inputs.version }}"
-      imageName: 'gha-dotnet-hello-world:${{ inputs.version }}'
+      imageName: 'gha-dotnet-hello-world'
       push: true
-      
+      imageTags: |
+        gha-dotnet-hello-world:latest
+        gha-dotnet-hello-world:${{ inputs.version }}
+
   verify:
     needs: [deploy]
     runs-on: ubuntu-latest
