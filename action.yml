@@ -15,7 +15,6 @@ runs:
   using: 'docker'
   # https://learn.microsoft.com/en-us/dotnet/devops/create-dotnet-github-action#performance-improvements
   image: 'Dockerfile'
-  #image: 'docker://ghcr.io/taori/gha-dotnet-hello-world:v1.0.0'
   args:
     - '-w'
     - ${{ inputs.workspace }}

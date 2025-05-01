@@ -28,7 +28,7 @@ jobs:
         uses: mingjun97/file-regex-replace@7d8ae0144cd6660fe8ca5a938ae71ea816a06f47
         with:
           regex: "image:\\s?'([^']+)'"
-          replacement: 'docker://ghcr.io/taori/gha-dotnet-hello-world:${{inputs.version}}'
+          replacement: "image: "docker://ghcr.io/taori/gha-dotnet-hello-world:${{inputs.version}}'"
           include: 'action.yml$'  
 
       - name: Commit action.yml
@@ -70,7 +70,7 @@ jobs:
     steps:
       - name: gha-dotnet-hello-world
         id: hw
-        uses: taori/gha-dotnet-hello-world@v0.1.1
+        uses: taori/gha-dotnet-hello-world@v0.1.2
         with: 
           workspace: ${{ github.workspace }}
 
