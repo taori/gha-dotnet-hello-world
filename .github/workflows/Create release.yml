@@ -56,6 +56,7 @@ jobs:
     permissions:
       packages: write 
       id-token: write
+      contents: read
     needs: [git-release]
     uses: taori/actions/.github/workflows/github-dotnet-action-deploy.yml@v11
     with:
