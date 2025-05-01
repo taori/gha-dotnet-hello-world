@@ -65,7 +65,6 @@ jobs:
       imageName: 'gha-dotnet-hello-world'
       push: true
       imageTags: |
-        latest
         ${{ inputs.version }}
 
   verify:
