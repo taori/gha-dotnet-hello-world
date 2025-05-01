@@ -15,7 +15,16 @@ Packages
 
 
 <!--CoverageStart-->
-Coverage state not available yet.
+![Code Coverage](https://img.shields.io/badge/Code%20Coverage-40%25-success?style=flat)
+
+Package | Line Rate | Branch Rate | Health
+-------- | --------- | ----------- | ------
+DotnetGithubActionHelloWorld | 40% | 50% | ✔
+**Summary** | **40%** (20 / 50) | **50%** (5 / 10) | ✔
+
+_Minimum allowed line rate is 1%_
+
+[Coverage details](https://taori.github.io/gha-dotnet-hello-world)
 <!--CoverageEnd-->
 
 ## Description
