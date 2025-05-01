@@ -123,6 +123,7 @@ jobs:
     uses: taori/actions/.github/workflows/github-dotnet-action-deploy.yml@v11
     with:      
       push: ${{ needs.parameters.outputs.publish == 'true' }}
+      sign: false
       
       
 #https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry
