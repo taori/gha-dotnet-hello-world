@@ -65,7 +65,7 @@ jobs:
       imageName: 'gha-dotnet-hello-world'
       push: true
       imageTags: |
-        taori/gha-dotnet-hello-world:${{ inputs.version }}
+        ghcr.io/taori/gha-dotnet-hello-world:${{ inputs.version }}
 
   verify:
     needs: [deploy]
