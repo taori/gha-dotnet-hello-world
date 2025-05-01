@@ -5,7 +5,7 @@
 [![.GitHub](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/CI.yml/badge.svg)](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/CI.yml)
 [![GitHub issues](https://img.shields.io/github/issues/taori/gha-dotnet-hello-world)](https://github.com/taori/gha-dotnet-hello-world/issues)
 
-<!--CoverageStart-->
+<!--CoverageStart-->~~~~
 ![Code Coverage](https://img.shields.io/badge/Code%20Coverage-40%25-success?style=flat)
 
 Package | Line Rate | Branch Rate | Health
@@ -17,6 +17,10 @@ _Minimum allowed line rate is 1%_
 
 [Coverage details](https://taori.github.io/gha-dotnet-hello-world)
 <!--CoverageEnd-->
+
+## Market place
+
+[View](https://github.com/marketplace/actions/gha-dotnet-hello-world)
 
 ## Description
 
