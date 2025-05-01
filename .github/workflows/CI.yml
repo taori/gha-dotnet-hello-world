@@ -111,7 +111,7 @@ jobs:
 
   coverage:
     needs: [ build, parameters ]
-    uses: taori/actions/.github/workflows/coverage.yml@v10
+    uses: taori/actions/.github/workflows/coverage.yml@v11
     with:
       coberturaArtifactsName: ${{ needs.build.outputs.artifact-name-cobertura }}
       githubPagesUrl: "https://taori.github.io/gha-dotnet-hello-world"
