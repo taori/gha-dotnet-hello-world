@@ -1,17 +1,71 @@
-name: CI
+name: Create release
 
 on:  
   workflow_dispatch:
-    
-jobs:
+    inputs: 
+      version:
+        description: "The version of the release, e.g. v1.0.0"
+        default: "v0.1.0"
+        required: true
 
-  parameters:
+jobs:
+      
+  git-release:
     runs-on: ubuntu-latest
-    
+    steps:
+
+      - uses: actions/checkout@v4.1.7
+        with:
+          persist-credentials: true
+          repository: ${{ github.event.pull_request.head.repo.full_name }} # required for commit
+          ref: ${{ github.event.pull_request.head.ref }} # required for commit          
+          
+      - name: Modify action.yml
+        uses: mingjun97/file-regex-replace@7d8ae0144cd6660fe8ca5a938ae71ea816a06f47
+        with:
+          regex: "image:\s?'([^']+)'"
+          replacement: 'docker://ghcr.io/taori/gha-dotnet-hello-world:${{inputs.version}}'
+          path: 'action.yml'      
+
+      - name: Commit action.yml
+        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 #v9.1.4
+        with:
+          default_author: github_actions
+          pull: false
+          push: false
+          add: ./action.yml
+          message: 'Version bump'
+          
+      - name: tag + push
+        run: |
+          git tag -f -a ${{ inputs.version }} -m "Release ${{ inputs.version }}"
+          git push -f origin ${{ inputs.version }}
+          
+      - name: Create Release
+        id: create_release
+        uses: comnoco/create-release@7dea6dc82ac9d97ced7a764aa82811451bba80e0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: refs/tags/${{ inputs.version }}
+          release_name: Release ${{ inputs.version }}
+          draft: false
+          prerelease: false
+          
+  deploy:
+    needs: [git-release]
+    uses: taori/actions/.github/workflows/github-dotnet-action-deploy.yml@v11
+    with:
+      checkoutRef: "refs/tags/${{ inputs.version }}"
+      push: true
+      
+  verify:
+    needs: [deploy]
+    runs-on: ubuntu-latest
     steps:
       - name: gha-dotnet-hello-world
         id: hw
-        uses: taori/gha-dotnet-hello-world@v0.1.0
+        uses: taori/gha-dotnet-hello-world@${{ inputs.version }}
         with: 
           workspace: ${{ github.workspace }}
 
