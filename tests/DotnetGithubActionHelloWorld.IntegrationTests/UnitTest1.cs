@@ -25,7 +25,7 @@ public class UnitTest1
 	    {
 		    WorkspaceDirectory = w,
 	    }, TestContext.Current.CancellationToken);
-
+	    
 	    logger.Collector.Count.ShouldBeGreaterThan(0);
 	    exitCode.ShouldNotBeNull();
 	    exitCode.ShouldBe(0);

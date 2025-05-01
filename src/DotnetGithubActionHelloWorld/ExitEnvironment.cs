@@ -8,8 +8,11 @@ internal static class ExitEnvironment
 	
 	public static void WithCode(int code)
 	{
-		if(Environment.GetEnvironmentVariable("IS_TEST") == "true")
+		if (Environment.GetEnvironmentVariable("IS_TEST") == "true")
+		{
 			OnExit?.Invoke(null, code);
+			return;
+		}
 		
 		Environment.Exit(code);
 	}
