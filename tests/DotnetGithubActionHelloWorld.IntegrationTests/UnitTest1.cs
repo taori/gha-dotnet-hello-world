@@ -1,6 +1,7 @@
 using DotnetGithubActionHelloWorld.Tests.Shared;
 
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Logging.Testing;
 
 using Shouldly;
 
@@ -15,12 +16,19 @@ public class UnitTest1
 	[Fact]
     public async Task Test1()
     {
+	    Environment.SetEnvironmentVariable("IS_TEST", "true");
+	    var exitCode = (int?)null;
+	    ExitEnvironment.OnExit += (sender, i) => exitCode = i; 
 	    var w = Path.GetTempPath();
-	    await CoreProcedure.ExecuteAsync(NullLogger<CoreProcedure>.Instance, new ActionInputs()
+	    var logger = new FakeLogger<CoreProcedure>();
+	    await CoreProcedure.ExecuteAsync(logger, new ActionInputs()
 	    {
 		    WorkspaceDirectory = w,
 	    }, TestContext.Current.CancellationToken);
-	    
+
+	    logger.Collector.Count.ShouldBeGreaterThan(0);
+	    exitCode.ShouldNotBeNull();
+	    exitCode.ShouldBe(0);
     }
 
     public UnitTest1(ITestOutputHelper outputHelper)

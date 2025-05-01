@@ -33,7 +33,7 @@ internal class CoreProcedure
 			Console.WriteLine($"::set-output name=message::Hello from Github Action {DateTime.Now:F}");
 		}
 
-		Environment.Exit(0);
+		ExitEnvironment.WithCode(0);
 		return Task.CompletedTask;
 	}
 }

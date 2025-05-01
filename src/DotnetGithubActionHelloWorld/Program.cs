@@ -41,6 +41,6 @@ class Program
 				string.Join(Environment.NewLine, errors.Select(error => error.ToString()))
 			);
 
-		Environment.Exit(2);
+		ExitEnvironment.WithCode(2);
 	}
 }
