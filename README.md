@@ -5,15 +5,6 @@
 [![.GitHub](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/CI.yml/badge.svg)](https://github.com/taori/gha-dotnet-hello-world/actions/workflows/CI.yml)
 [![GitHub issues](https://img.shields.io/github/issues/taori/gha-dotnet-hello-world)](https://github.com/taori/gha-dotnet-hello-world/issues)
 
-Packages
-
-| Package | Release | Pre release                                                                                                                                       |
-|---------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| MyPackageId | [![NuGet version (MyPackageId)](https://img.shields.io/nuget/v/MyPackageId.svg)](https://www.nuget.org/packages/MyPackageId/) | [![NuGet version (MyPackageId)](https://img.shields.io/nuget/vpre/MyPackageId.svg)](https://www.nuget.org/packages/MyPackageId/latest/prerelease) |
-
-
-
-
 <!--CoverageStart-->
 ![Code Coverage](https://img.shields.io/badge/Code%20Coverage-40%25-success?style=flat)
 

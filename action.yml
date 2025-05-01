@@ -8,6 +8,9 @@ inputs:
   workspace:
     description: 'path of workspace'
     required: true
+outputs: 
+  message: 
+    description: "message from the runner"
 runs:
   using: 'docker'
   # https://learn.microsoft.com/en-us/dotnet/devops/create-dotnet-github-action#performance-improvements
@@ -15,4 +18,4 @@ runs:
   #image: 'docker://ghcr.io/taori/gha-dotnet-hello-world:v1.0.0'
   args:
     - '-w'
-    - ${{ inputs.filename }}
+    - ${{ inputs.workspace }}
