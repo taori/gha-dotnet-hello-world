@@ -53,6 +53,9 @@ jobs:
           prerelease: false
           
   deploy:
+    permissions:
+      packages: write 
+      id-token: write
     needs: [git-release]
     uses: taori/actions/.github/workflows/github-dotnet-action-deploy.yml@v11
     with:
