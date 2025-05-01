@@ -66,6 +66,7 @@ jobs:
       push: true
       imageTags: |
         ghcr.io/taori/gha-dotnet-hello-world:${{ inputs.version }}
+        ghcr.io/taori/gha-dotnet-hello-world:latest
 
   verify:
     needs: [deploy]
@@ -73,7 +74,7 @@ jobs:
     steps:
       - name: gha-dotnet-hello-world
         id: hw
-        uses: taori/gha-dotnet-hello-world@v0.1.9
+        uses: taori/gha-dotnet-hello-world@latest
         with: 
           workspace: ${{ github.workspace }}
 
