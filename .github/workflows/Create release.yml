@@ -1,0 +1,22 @@
+name: CI
+
+on:  
+  workflow_dispatch:
+    
+jobs:
+
+  parameters:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: gha-dotnet-hello-world
+        id: hw
+        uses: taori/gha-dotnet-hello-world@v0.1.0
+        with: 
+          workspace: ${{ github.workspace }}
+
+      - name: Setting up parameters
+        id: parameters
+        shell: pwsh
+        run: |
+          Write-Host "Previous result is ${{ steps.hw.outputs.message }}"

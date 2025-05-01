@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "package", "package", "{A21A
 		..\build\Tests.Common.props = ..\build\Tests.Common.props
 		..\Dockerfile = ..\Dockerfile
 		..\action.yml = ..\action.yml
+		..\.github\workflows\Create release.yml = ..\.github\workflows\Create release.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{382A3607-386C-4D09-95A1-CD295EC6DA29}"
